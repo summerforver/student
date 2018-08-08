@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  DeleteViewController.h
 //  student
 //
 //  Created by 王一卓 on 2018/8/7.
@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
+@interface DeleteViewController : UIViewController
+
+@property (nonatomic, strong)UITextField *deleteTextField;
 
 
 @end
-

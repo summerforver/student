@@ -7,15 +7,39 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1B8A822A211A8CB500F63DC2 /* 按钮.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B8A8229211A8CB400F63DC2 /* 按钮.png */; };
 		1BAB67FE2119397900694E92 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BAB67FD2119397900694E92 /* AppDelegate.m */; };
 		1BAB68012119397900694E92 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BAB68002119397900694E92 /* ViewController.m */; };
 		1BAB68042119397900694E92 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1BAB68022119397900694E92 /* Main.storyboard */; };
 		1BAB68062119397C00694E92 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1BAB68052119397C00694E92 /* Assets.xcassets */; };
 		1BAB68092119397C00694E92 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1BAB68072119397C00694E92 /* LaunchScreen.storyboard */; };
 		1BAB680C2119397C00694E92 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BAB680B2119397C00694E92 /* main.m */; };
+		1BAB6814211941B300694E92 /* MainInterfaceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BAB6813211941B300694E92 /* MainInterfaceViewController.m */; };
+		1BAB68172119423400694E92 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BAB68162119423400694E92 /* LoginViewController.m */; };
+		1BAB681A21194D8F00694E92 /* AddViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BAB681921194D8F00694E92 /* AddViewController.m */; };
+		1BAB681E21194DB200694E92 /* DeleteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BAB681D21194DB200694E92 /* DeleteViewController.m */; };
+		1BAB682121194DBD00694E92 /* ChangeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BAB682021194DBD00694E92 /* ChangeViewController.m */; };
+		1BAB682421194DD300694E92 /* CheckViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BAB682321194DD300694E92 /* CheckViewController.m */; };
+		1BAB6828211990D400694E92 /* StudentMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BAB6827211990D400694E92 /* StudentMessage.m */; };
+		1BAB682B2119969B00694E92 /* StudentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BAB682A2119969B00694E92 /* StudentTableViewCell.m */; };
+		1BAB682E2119B6DD00694E92 /* ShowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BAB682D2119B6DD00694E92 /* ShowViewController.m */; };
+		1BAB68322119BF3100694E92 /* 10.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 1BAB68312119BF3100694E92 /* 10.JPG */; };
+		1BAB68342119BF7200694E92 /* 11.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 1BAB68332119BF7200694E92 /* 11.JPG */; };
+		1BAB68362119C18B00694E92 /* 12.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 1BAB68352119C18B00694E92 /* 12.JPG */; };
+		1BAB68382119C1A500694E92 /* 14.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 1BAB68372119C1A400694E92 /* 14.JPG */; };
+		1BAB683A2119C1AF00694E92 /* 13.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 1BAB68392119C1AE00694E92 /* 13.JPG */; };
+		1BAB683C2119C33400694E92 /* 16.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 1BAB683B2119C33400694E92 /* 16.JPG */; };
+		1BAB683E2119C34E00694E92 /* 18.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 1BAB683D2119C34D00694E92 /* 18.JPG */; };
+		1BAB68402119C3B000694E92 /* 21.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 1BAB683F2119C3B000694E92 /* 21.JPG */; };
+		1BAB68422119C41A00694E92 /* 19.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 1BAB68412119C41A00694E92 /* 19.JPG */; };
+		1BAB68442119C41D00694E92 /* 20.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 1BAB68432119C41D00694E92 /* 20.JPG */; };
+		1BAB68472119D43700694E92 /* ChangeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BAB68462119D43700694E92 /* ChangeTableViewCell.m */; };
+		1BAB68492119ED1900694E92 /* 15.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 1BAB68482119ED1900694E92 /* 15.JPG */; };
+		1BAB684B2119ED1D00694E92 /* 17.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 1BAB684A2119ED1D00694E92 /* 17.JPG */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1B8A8229211A8CB400F63DC2 /* 按钮.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "按钮.png"; sourceTree = "<group>"; };
 		1BAB67F92119397900694E92 /* student.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = student.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1BAB67FC2119397900694E92 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		1BAB67FD2119397900694E92 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -26,6 +50,38 @@
 		1BAB68082119397C00694E92 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1BAB680A2119397C00694E92 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1BAB680B2119397C00694E92 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		1BAB6812211941B300694E92 /* MainInterfaceViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainInterfaceViewController.h; sourceTree = "<group>"; };
+		1BAB6813211941B300694E92 /* MainInterfaceViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainInterfaceViewController.m; sourceTree = "<group>"; };
+		1BAB68152119423400694E92 /* LoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		1BAB68162119423400694E92 /* LoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		1BAB681821194D8F00694E92 /* AddViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddViewController.h; sourceTree = "<group>"; };
+		1BAB681921194D8F00694E92 /* AddViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddViewController.m; sourceTree = "<group>"; };
+		1BAB681C21194DB200694E92 /* DeleteViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DeleteViewController.h; sourceTree = "<group>"; };
+		1BAB681D21194DB200694E92 /* DeleteViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DeleteViewController.m; sourceTree = "<group>"; };
+		1BAB681F21194DBD00694E92 /* ChangeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChangeViewController.h; sourceTree = "<group>"; };
+		1BAB682021194DBD00694E92 /* ChangeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChangeViewController.m; sourceTree = "<group>"; };
+		1BAB682221194DD300694E92 /* CheckViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CheckViewController.h; sourceTree = "<group>"; };
+		1BAB682321194DD300694E92 /* CheckViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CheckViewController.m; sourceTree = "<group>"; };
+		1BAB6826211990D400694E92 /* StudentMessage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StudentMessage.h; sourceTree = "<group>"; };
+		1BAB6827211990D400694E92 /* StudentMessage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StudentMessage.m; sourceTree = "<group>"; };
+		1BAB68292119969B00694E92 /* StudentTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StudentTableViewCell.h; sourceTree = "<group>"; };
+		1BAB682A2119969B00694E92 /* StudentTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StudentTableViewCell.m; sourceTree = "<group>"; };
+		1BAB682C2119B6DD00694E92 /* ShowViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShowViewController.h; sourceTree = "<group>"; };
+		1BAB682D2119B6DD00694E92 /* ShowViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShowViewController.m; sourceTree = "<group>"; };
+		1BAB68312119BF3100694E92 /* 10.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 10.JPG; sourceTree = "<group>"; };
+		1BAB68332119BF7200694E92 /* 11.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 11.JPG; sourceTree = "<group>"; };
+		1BAB68352119C18B00694E92 /* 12.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 12.JPG; sourceTree = "<group>"; };
+		1BAB68372119C1A400694E92 /* 14.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 14.JPG; sourceTree = "<group>"; };
+		1BAB68392119C1AE00694E92 /* 13.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 13.JPG; sourceTree = "<group>"; };
+		1BAB683B2119C33400694E92 /* 16.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 16.JPG; sourceTree = "<group>"; };
+		1BAB683D2119C34D00694E92 /* 18.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 18.JPG; sourceTree = "<group>"; };
+		1BAB683F2119C3B000694E92 /* 21.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 21.JPG; sourceTree = "<group>"; };
+		1BAB68412119C41A00694E92 /* 19.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 19.JPG; sourceTree = "<group>"; };
+		1BAB68432119C41D00694E92 /* 20.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 20.JPG; sourceTree = "<group>"; };
+		1BAB68452119D43700694E92 /* ChangeTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChangeTableViewCell.h; sourceTree = "<group>"; };
+		1BAB68462119D43700694E92 /* ChangeTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChangeTableViewCell.m; sourceTree = "<group>"; };
+		1BAB68482119ED1900694E92 /* 15.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 15.JPG; sourceTree = "<group>"; };
+		1BAB684A2119ED1D00694E92 /* 17.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 17.JPG; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -42,6 +98,7 @@
 		1BAB67F02119397900694E92 = {
 			isa = PBXGroup;
 			children = (
+				1BAB684C2119ED1F00694E92 /* student图片 */,
 				1BAB67FB2119397900694E92 /* student */,
 				1BAB67FA2119397900694E92 /* Products */,
 			);
@@ -60,8 +117,8 @@
 			children = (
 				1BAB67FC2119397900694E92 /* AppDelegate.h */,
 				1BAB67FD2119397900694E92 /* AppDelegate.m */,
-				1BAB67FF2119397900694E92 /* ViewController.h */,
-				1BAB68002119397900694E92 /* ViewController.m */,
+				1BAB682521194DD900694E92 /* 登录 注册 */,
+				1BAB681B21194D9600694E92 /* 增删改查 */,
 				1BAB68022119397900694E92 /* Main.storyboard */,
 				1BAB68052119397C00694E92 /* Assets.xcassets */,
 				1BAB68072119397C00694E92 /* LaunchScreen.storyboard */,
@@ -69,6 +126,62 @@
 				1BAB680B2119397C00694E92 /* main.m */,
 			);
 			path = student;
+			sourceTree = "<group>";
+		};
+		1BAB681B21194D9600694E92 /* 增删改查 */ = {
+			isa = PBXGroup;
+			children = (
+				1BAB681821194D8F00694E92 /* AddViewController.h */,
+				1BAB681921194D8F00694E92 /* AddViewController.m */,
+				1BAB681C21194DB200694E92 /* DeleteViewController.h */,
+				1BAB681D21194DB200694E92 /* DeleteViewController.m */,
+				1BAB681F21194DBD00694E92 /* ChangeViewController.h */,
+				1BAB682021194DBD00694E92 /* ChangeViewController.m */,
+				1BAB68452119D43700694E92 /* ChangeTableViewCell.h */,
+				1BAB68462119D43700694E92 /* ChangeTableViewCell.m */,
+				1BAB682221194DD300694E92 /* CheckViewController.h */,
+				1BAB682321194DD300694E92 /* CheckViewController.m */,
+			);
+			path = "增删改查";
+			sourceTree = "<group>";
+		};
+		1BAB682521194DD900694E92 /* 登录 注册 */ = {
+			isa = PBXGroup;
+			children = (
+				1BAB67FF2119397900694E92 /* ViewController.h */,
+				1BAB68002119397900694E92 /* ViewController.m */,
+				1BAB68152119423400694E92 /* LoginViewController.h */,
+				1BAB68162119423400694E92 /* LoginViewController.m */,
+				1BAB6812211941B300694E92 /* MainInterfaceViewController.h */,
+				1BAB6813211941B300694E92 /* MainInterfaceViewController.m */,
+				1BAB6826211990D400694E92 /* StudentMessage.h */,
+				1BAB6827211990D400694E92 /* StudentMessage.m */,
+				1BAB682C2119B6DD00694E92 /* ShowViewController.h */,
+				1BAB682D2119B6DD00694E92 /* ShowViewController.m */,
+				1BAB68292119969B00694E92 /* StudentTableViewCell.h */,
+				1BAB682A2119969B00694E92 /* StudentTableViewCell.m */,
+			);
+			path = "登录 注册";
+			sourceTree = "<group>";
+		};
+		1BAB684C2119ED1F00694E92 /* student图片 */ = {
+			isa = PBXGroup;
+			children = (
+				1BAB68312119BF3100694E92 /* 10.JPG */,
+				1BAB68332119BF7200694E92 /* 11.JPG */,
+				1BAB68352119C18B00694E92 /* 12.JPG */,
+				1BAB68392119C1AE00694E92 /* 13.JPG */,
+				1BAB68372119C1A400694E92 /* 14.JPG */,
+				1BAB68482119ED1900694E92 /* 15.JPG */,
+				1BAB683B2119C33400694E92 /* 16.JPG */,
+				1BAB684A2119ED1D00694E92 /* 17.JPG */,
+				1BAB683D2119C34D00694E92 /* 18.JPG */,
+				1BAB68412119C41A00694E92 /* 19.JPG */,
+				1BAB68432119C41D00694E92 /* 20.JPG */,
+				1BAB683F2119C3B000694E92 /* 21.JPG */,
+				1B8A8229211A8CB400F63DC2 /* 按钮.png */,
+			);
+			path = "student图片";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -128,8 +241,21 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1B8A822A211A8CB500F63DC2 /* 按钮.png in Resources */,
+				1BAB68442119C41D00694E92 /* 20.JPG in Resources */,
+				1BAB68402119C3B000694E92 /* 21.JPG in Resources */,
+				1BAB683E2119C34E00694E92 /* 18.JPG in Resources */,
+				1BAB68382119C1A500694E92 /* 14.JPG in Resources */,
+				1BAB68422119C41A00694E92 /* 19.JPG in Resources */,
+				1BAB684B2119ED1D00694E92 /* 17.JPG in Resources */,
+				1BAB683A2119C1AF00694E92 /* 13.JPG in Resources */,
+				1BAB68342119BF7200694E92 /* 11.JPG in Resources */,
+				1BAB683C2119C33400694E92 /* 16.JPG in Resources */,
 				1BAB68092119397C00694E92 /* LaunchScreen.storyboard in Resources */,
 				1BAB68062119397C00694E92 /* Assets.xcassets in Resources */,
+				1BAB68322119BF3100694E92 /* 10.JPG in Resources */,
+				1BAB68492119ED1900694E92 /* 15.JPG in Resources */,
+				1BAB68362119C18B00694E92 /* 12.JPG in Resources */,
 				1BAB68042119397900694E92 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -142,8 +268,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				1BAB68012119397900694E92 /* ViewController.m in Sources */,
+				1BAB682421194DD300694E92 /* CheckViewController.m in Sources */,
+				1BAB6814211941B300694E92 /* MainInterfaceViewController.m in Sources */,
+				1BAB681A21194D8F00694E92 /* AddViewController.m in Sources */,
 				1BAB680C2119397C00694E92 /* main.m in Sources */,
+				1BAB681E21194DB200694E92 /* DeleteViewController.m in Sources */,
 				1BAB67FE2119397900694E92 /* AppDelegate.m in Sources */,
+				1BAB6828211990D400694E92 /* StudentMessage.m in Sources */,
+				1BAB682121194DBD00694E92 /* ChangeViewController.m in Sources */,
+				1BAB682B2119969B00694E92 /* StudentTableViewCell.m in Sources */,
+				1BAB68172119423400694E92 /* LoginViewController.m in Sources */,
+				1BAB682E2119B6DD00694E92 /* ShowViewController.m in Sources */,
+				1BAB68472119D43700694E92 /* ChangeTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
