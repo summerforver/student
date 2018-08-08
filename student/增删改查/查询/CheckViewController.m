@@ -8,6 +8,7 @@
 
 #import "CheckViewController.h"
 #import "StudentTableViewCell.h"
+#import "StudentMessage.h"
 
 @interface CheckViewController ()<UITableViewDelegate, UITableViewDataSource>
 
@@ -20,7 +21,7 @@
     // Do any additional setup after loading the view.
 //    self.view.backgroundColor = [UIColor whiteColor];
     UIImageView *backgroundView = [[UIImageView alloc] initWithFrame:self.view.bounds];
-    backgroundView.image = [UIImage imageNamed:@"20.JPG"];
+    backgroundView.image = [UIImage imageNamed:@"27.JPG"];
     [self.view addSubview:backgroundView];
     
     self.navigationItem.title= @"查询学生信息";
@@ -45,6 +46,7 @@
     
     _checkTextField = [[UITextField alloc] initWithFrame:CGRectMake(30, 120, 270, 40)];
     _checkTextField.layer.masksToBounds = YES;
+    _checkTextField.placeholder = @"请输入八位学号";
     _checkTextField.layer.cornerRadius = 7;
     _checkTextField.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:_checkTextField];
@@ -57,12 +59,18 @@
     [checkButton addTarget:self action:@selector(pressCheckButton:) forControlEvents:UIControlEventTouchDown];
     [self.view addSubview:checkButton];
     
-    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(5, 140, 365, 100) style:UITableViewStyleGrouped];
+    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(5, 180, 365, 0) style:UITableViewStyleGrouped];
+    [self.tableView registerClass:[StudentTableViewCell class] forCellReuseIdentifier:@"cell"];
     _tableView.delegate = self;
     _tableView.dataSource = self;
     _tableView.showsVerticalScrollIndicator = NO;
-    _tableView.backgroundColor = [UIColor colorWithRed:0.93f green:0.93f blue:0.94f alpha:1.00f];
+    _tableView.backgroundColor = [UIColor clearColor];
+    _tableView.scrollEnabled = NO;
+//    [UIColor colorWithRed:0.93f green:0.93f blue:0.94f alpha:1.00f];
+    
     [self.view addSubview:_tableView];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(check1:) name:@"check1" object:nil];
     
 }
 
@@ -74,13 +82,18 @@
         UIAlertAction *firstAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
             //响应事件
 //            NSLog(@"action = %@", action);
+            NSDictionary *dict = @{@"checkText":self.checkTextField.text};
+            
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"check" object:nil userInfo:dict];
             
             
+//            self.tableView.frame = CGRectMake(5, 180, 365, 100);
             
         }];
         
         UIAlertAction *secondAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
-            NSLog(@"action = %@", action);
+//            self.tableView.frame = CGRectMake(5, 180, 365, 0);
+//            NSLog(@"action = %@", action);
         }];
         
         [alert addAction:firstAction];
@@ -91,6 +104,20 @@
         
     }
     
+}
+
+- (void)check1:(NSNotification *)text {
+//    NSLog(@"%@",text.userInfo[@"nameText"]);
+    _a = [[StudentMessage alloc] init];
+    _a = text.userInfo[@"studentMessage"];
+    
+    if ([_a.numberString isEqualToString:self.checkTextField.text]) {
+        self.tableView.frame = CGRectMake(5, 180, 365, 100);
+    } else {
+        self.tableView.frame = CGRectMake(5, 180, 365, 0);
+    }
+    
+//    _a.nameString = text.userInfo[@"nameText"];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -110,7 +137,7 @@
 }
 
 //- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-//    return 5;
+//    return 0.00001;
 //}
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
@@ -130,15 +157,25 @@
     
     
 //    StudentMessage *student = _studentMutableArray[indexPath.section];
-//    cell.nameMessageLabel.text = student.nameString;
-//    cell.numberMessageLabel.text = student.nurString;
-//    cell.classMessageLabel.text = student.classString;
-//    cell.sexMessageLabel.text = student.sexString;
-//    cell.scoreMessageLabel.text = student.scoreString;
+    cell.nameMessageLabel.text = _a.nameString;
+    cell.numberMessageLabel.text = _a.numberString;
+    cell.classMessageLabel.text = _a.classString;
+    cell.sexMessageLabel.text = _a.sexString;
+    cell.scoreMessageLabel.text = _a.scoreString;
     
     cell.backgroundColor = [UIColor clearColor];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
     
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+    _checkTextField.text = @"";
+    self.tableView.frame = CGRectMake(5, 180, 365, 0);
+}
+
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    [self.view endEditing:YES];
 }
 
 

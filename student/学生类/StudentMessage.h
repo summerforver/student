@@ -12,10 +12,5 @@
 @property (nonatomic, copy)NSString *nameString, *numberString, *classString, *sexString, *scoreString ;
 - (instancetype)initWithName:(NSString *)name addNumber:(NSString *)number addClass:(NSString *)clas addSex:(NSString *)sex addScore:(NSString *)score;
 
-//- (void)addStudent:(StudentMessage *)temp;
-//- (void)deleteStudent:(NSInteger)num;
-//- (void)changeStudent:(NSInteger)num;
-//- (StudentMessage *)checkStudent:(NSInteger)num;
-//
 
 @end

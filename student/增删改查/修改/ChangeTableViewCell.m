@@ -74,8 +74,18 @@
     _sexLabel.text = @"性别:";
     [self setLabel:_sexLabel];
     
-    _sexTextField.frame = CGRectMake(200, 55, 50, 30);
-    [self setTextField:_sexTextField];
+    _label.frame = CGRectMake(200, 55, 25, 30);
+    _label.font = [UIFont systemFontOfSize:14.0];
+    _label.backgroundColor = [UIColor whiteColor];
+    _label.layer.masksToBounds = YES;
+    _label.layer.cornerRadius = 7;
+    
+    _button.frame = CGRectMake(225, 55, 25, 30);
+    [_button setImage:[UIImage imageNamed:@"按钮"] forState:UIControlStateNormal];
+   
+    
+//    _sexTextField.frame = CGRectMake(200, 55, 50, 30);
+//    [self setTextField:_sexTextField];
     
     _scoreLabel.frame = CGRectMake(260, 55, 35, 30);
     _scoreLabel.text = @"成绩:";

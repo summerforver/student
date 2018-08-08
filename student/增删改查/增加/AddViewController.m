@@ -111,7 +111,7 @@
     _label.layer.masksToBounds = YES;
     _label.layer.cornerRadius = 7;
     _label.textAlignment = NSTextAlignmentCenter;
-    _label.backgroundColor = [UIColor lightGrayColor];
+    _label.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:_label];
     
     _rightButton = [[UIButton alloc] initWithFrame:CGRectMake(160, 270, 40, 40)];
@@ -125,15 +125,6 @@
     _tableView.dataSource = self;
     _tableView.showsVerticalScrollIndicator = NO;
     _tableView.backgroundColor = [UIColor colorWithRed:0.93f green:0.93f blue:0.94f alpha:1.00f];
-    
-    
-//    _sexTextField = [[UITextField alloc] initWithFrame:CGRectMake(110, 270, 200, 40)];
-//    _sexTextField.layer.masksToBounds = YES;
-//    _sexTextField.layer.cornerRadius = 7;
-//    _sexTextField.backgroundColor = [UIColor whiteColor];
-//
-    
-    
     
     
     UILabel *scoreLabel = [[UILabel alloc] init];
@@ -152,7 +143,6 @@
     
     UIButton *addButton = [[UIButton alloc] initWithFrame:CGRectMake(150, 380, 100, 40)];
     [addButton setTitle:@"确认添加" forState:UIControlStateNormal];
-//    [addButton setTitle:@"确认" forState:UIControlStateSelected];
     [addButton setBackgroundColor:[UIColor orangeColor]];
     addButton.layer.masksToBounds = YES;
     addButton.layer.cornerRadius = 7;
@@ -226,13 +216,9 @@
     } else {
         _label.text = @"女";
     }
-    [ UIView animateWithDuration:0.3
-                      animations:^{
-                          self.rightButton.imageView.transform = CGAffineTransformMakeRotation(2*M_PI);
-                          self.tableView.frame = CGRectMake(110, 310, 50, 0);
-                          self.isSticked = NO;
-                      }];
-    
+    self.tableView.frame = CGRectMake(110, 310, 50, 0);
+    self.isSticked = NO;
+
 }
 
 - (void)rightButton:(UIButton *)button {
@@ -240,27 +226,11 @@
     
     self.isSticked = !self.isSticked;
     if (self.isSticked) {
-        
-        [ UIView animateWithDuration:0.3
-                          animations:^{
-                              
-                              button.imageView.transform = CGAffineTransformMakeRotation(M_PI);
-                              self.tableView.frame = CGRectMake(110, 310, 50, 60);
-                          }] ;
-        
-        
-        
+        self.tableView.frame = CGRectMake(110, 310, 50, 60);
         
     } else{
-        //        _tableView.hidden = YES;
-        [ UIView animateWithDuration:0.3
-                          animations:^{
-                              button.imageView.transform = CGAffineTransformMakeRotation(2*M_PI);
-                              self.tableView.frame = CGRectMake(110, 310, 50, 0);
-                              
-                          }];
-        
-        
+        self.tableView.frame = CGRectMake(110, 310, 50, 0);
+    
     }
     
 }
@@ -273,19 +243,9 @@
 - (void)pressAddButton:(UIButton *)button {
     
     button.selected = !button.selected;
-//    NSDictionary *dict = [[NSDictionary alloc] initWithObjectsAndKeys:self.nameTextField.text,@"nameText",self.numTextField.text,@"numText",self.classTextField.text,@"classText",self.sexTextField.text,@"sexText",self.scoreTextField.text,@"scoreText", nil];
-//    NSLog(@"%@",self.nameTextField.text);
-    
-    
     NSDictionary *dict = @{@"nameText":self.nameTextField.text, @"numText":self.numTextField.text, @"classText":self.classTextField.text, @"sexText":self.label.text, @"scoreText":self.scoreTextField.text};
-    
-//    NSNotification *nofication = [NSNotification notificationWithName:@"tongzhi" object:nil userInfo:dict];
-
-//    [[NSNotificationCenter defaultCenter] postNotification:nofication];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"add" object:nil userInfo:dict];
     
-    
-//    [_delegate shouldChangeValue:_nameTextField.text :_numTextField.text :_classTextField.text :_sexTextField.text :_scoreTextField.text];
     if (button.selected == YES) {
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"添加成功" message:@"请在学生信息显示处查看" preferredStyle:UIAlertControllerStyleAlert];
         
@@ -312,7 +272,7 @@
     _nameTextField.text = @"";
     _numTextField.text = @"";
     _classTextField.text = @"";
-    _sexTextField.text = @"";
+    _label.text = @"";
     _scoreTextField.text = @"";
 }
 - (void)pressLeftButton {

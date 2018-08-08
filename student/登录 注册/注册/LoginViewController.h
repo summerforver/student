@@ -10,8 +10,11 @@
 
 
 @protocol ChangeValueDelegte<NSObject>
-- (void)shouldChangeValue:(NSString *)paraStr :(NSString *)nameStr;
+
+- (void)shouldChangeValue:(NSString *)nameString :(NSString *)passString;
+
 @end
+
 @interface LoginViewController : UIViewController
 
 //@property (nonatomic, strong)UITextField *nameTextField;
@@ -20,6 +23,7 @@
 @property (nonatomic, strong)UIButton *reallyLoginButton;
 
 @property (nonatomic, strong) UITextField *nameTextField;
+
 @property (nonatomic, weak)id<ChangeValueDelegte> delegate;
 
 @end

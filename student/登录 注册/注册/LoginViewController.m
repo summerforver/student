@@ -22,7 +22,7 @@
 //    self.view.backgroundColor = [UIColor colorWithRed:0.69f green:0.80f blue:0.93f alpha:1.00f];
     
     UIImageView *backgroundView = [[UIImageView alloc] initWithFrame:self.view.bounds];
-    backgroundView.image = [UIImage imageNamed:@"11.JPG"];
+    backgroundView.image = [UIImage imageNamed:@"25.JPG"];
     [self.view addSubview:backgroundView];
     
     UILabel *nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(40, 100, 70, 40)];
@@ -93,6 +93,8 @@
         UIAlertAction *defaultAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
             //响应事件
             NSLog(@"action = %@", action);
+            self.passTextField.text = @"";
+            self.reallyPassTextField.text = @"";
         }];
         UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
             //响应事件

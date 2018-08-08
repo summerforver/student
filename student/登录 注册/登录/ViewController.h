@@ -14,6 +14,8 @@
 @property (nonatomic, strong)UITextField *passTextField;
 @property (nonatomic, strong)UIButton *submitButton;
 @property (nonatomic, strong)UIButton *loginButton;
+@property (nonatomic, strong)NSMutableArray *personMutableArray;
+@property (nonatomic, strong)NSMutableArray *passMutableArray;
 
 @end
 

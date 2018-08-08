@@ -7,11 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "StudentMessage.h"
 
 @interface CheckViewController : UIViewController
 
 @property (nonatomic, strong)UITextField *checkTextField;
 @property (nonatomic, strong)UITableView *tableView;
-
+@property StudentMessage *a;
 
 @end
