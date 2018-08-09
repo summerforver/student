@@ -54,6 +54,10 @@
     
     [self creatView];
     
+     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(change1:) name:@"change1" object:nil];
+    
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(alert:) name:@"alert" object:nil];
+    
 }
 
 - (void)showFrame {
@@ -195,7 +199,7 @@
     
     [self.view addSubview:_tableView];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(change1:) name:@"change1" object:nil];
+   
     
 }
 
@@ -307,24 +311,39 @@
     //
     //    [[NSNotificationCenter defaultCenter] postNotificationName:@"delete" object:nil userInfo:dict];
     if (button.selected == YES) {
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"确认修改" message:@"请确定是否修改" preferredStyle:UIAlertControllerStyleAlert];
-        
-        UIAlertAction *firstAction = [UIAlertAction actionWithTitle:@"是" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
-            //响应事件
-            //            NSLog(@"action = %@", action);
-            NSDictionary *dict = @{@"nameChText":self.nameTextField.text, @"numberChText":self.numberTextField.text, @"classChText":self.classTextField.text, @"sexChText":self.label.text, @"scoreChText":self.scoreTextField.text};
+        StudentMessage *student = [[StudentMessage alloc] initWithName:_nameTextField.text addNumber:_numberTextField.text addClass:_classTextField.text addSex:_label.text addScore:_scoreTextField.text];
+        if ([student chickName:_nameTextField.text andNumber:_numberTextField.text addClass:_classTextField.text addSex:_label.text addScore:_scoreTextField.text]) {
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"确认修改" message:@"请确定是否修改" preferredStyle:UIAlertControllerStyleAlert];
             
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"changeReally" object:nil userInfo:dict];
-            
-            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"修改成功" message:@"请在显示页面查看" preferredStyle:UIAlertControllerStyleAlert];
-            
-            UIAlertAction *firstAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
+            UIAlertAction *firstAction = [UIAlertAction actionWithTitle:@"是" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
                 //响应事件
-                NSLog(@"action = %@", action);
+                //            NSLog(@"action = %@", action);
+                NSDictionary *dict = @{@"nameChText":self.nameTextField.text, @"numberChText":self.numberTextField.text, @"classChText":self.classTextField.text, @"sexChText":self.label.text, @"scoreChText":self.scoreTextField.text};
+                
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"changeReally" object:nil userInfo:dict];
+                
+                UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"修改成功" message:@"请在显示页面查看" preferredStyle:UIAlertControllerStyleAlert];
+                
+                UIAlertAction *firstAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
+                    //响应事件
+                    NSLog(@"action = %@", action);
+                    
+                }];
+                
+                UIAlertAction *secondAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
+                    NSLog(@"action = %@", action);
+                }];
+                
+                [alert addAction:firstAction];
+                [alert addAction:secondAction];
+                
+                alert.view.tintColor = [UIColor blackColor];
+                [self presentViewController:alert animated:YES completion:nil];
+                
                 
             }];
             
-            UIAlertAction *secondAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
+            UIAlertAction *secondAction = [UIAlertAction actionWithTitle:@"否" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
                 NSLog(@"action = %@", action);
             }];
             
@@ -334,25 +353,32 @@
             alert.view.tintColor = [UIColor blackColor];
             [self presentViewController:alert animated:YES completion:nil];
             
-            
+        }
+    } else {
+        UIAlertController *alert1 = [UIAlertController alertControllerWithTitle:@"输入的信息不合法哟" message:@"请根据提示重新输入" preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction *firstAction1 = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
+            //响应事件
+//            self.scoreTextField.text = @"";
+//            self.label.text = @"";
+//            self.classTextField.text = @"";
+//            self.numberTextField.text = @"";
+//            self.nameTextField.text = @"";
         }];
         
-        UIAlertAction *secondAction = [UIAlertAction actionWithTitle:@"否" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
-            NSLog(@"action = %@", action);
-        }];
+        [alert1 addAction:firstAction1];
         
-        [alert addAction:firstAction];
-        [alert addAction:secondAction];
-        
-        alert.view.tintColor = [UIColor blackColor];
-        [self presentViewController:alert animated:YES completion:nil];
-        
+        alert1.view.tintColor = [UIColor blackColor];
+        [self presentViewController:alert1 animated:YES completion:nil];
     }
     
-    
-    
-    
 }
+
+//- (void)alert:(NSNotification *)text {
+//    self.changeTextField.text = text.userInfo[@"alert"];
+//
+//}
+
 
 - (void)change1:(NSNotification *)text {
     //    NSLog(@"%@",text.userInfo[@"nameText"]);

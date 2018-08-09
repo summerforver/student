@@ -24,6 +24,8 @@
 
 @property (nonatomic, strong) UITextField *nameTextField;
 
+@property (nonatomic, strong)NSMutableArray *receiverMutableArray;
+
 @property (nonatomic, weak)id<ChangeValueDelegte> delegate;
 
 @end

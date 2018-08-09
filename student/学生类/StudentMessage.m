@@ -22,4 +22,22 @@
     return  self;
 }
 
+- (BOOL)isPureInt:(NSString *)string{
+
+    NSScanner* scan = [NSScanner scannerWithString:string];
+
+    int val;
+
+    return [scan scanInt:&val] && [scan isAtEnd];
+
+}
+
+- (BOOL)chickName:(NSString *)namestring andNumber:(NSString *)numberstring addClass:(NSString *)classstring addSex:(NSString *)sexstring addScore:(NSString *)scorestring {
+    if (_nameString.length > 1 && _nameString.length < 10 && ![self isPureInt:_nameString] && [self isPureInt:_numberString] && _numberString.length == 8 && [self isPureInt:_scoreString] && ([_scoreString intValue] > 0 && [_scoreString intValue] <= 100)) {
+        return YES;
+    }
+   
+    return NO;
+}
+
 @end

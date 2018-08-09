@@ -52,6 +52,7 @@
 		1BAB682B2119969B00694E92 /* StudentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BAB682A2119969B00694E92 /* StudentTableViewCell.m */; };
 		1BAB682E2119B6DD00694E92 /* ShowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BAB682D2119B6DD00694E92 /* ShowViewController.m */; };
 		1BAB68472119D43700694E92 /* ChangeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BAB68462119D43700694E92 /* ChangeTableViewCell.m */; };
+		1BDC0E25211C18B000AB7483 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BDC0E24211C18B000AB7483 /* RootViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -114,6 +115,8 @@
 		1BAB682D2119B6DD00694E92 /* ShowViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShowViewController.m; sourceTree = "<group>"; };
 		1BAB68452119D43700694E92 /* ChangeTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChangeTableViewCell.h; sourceTree = "<group>"; };
 		1BAB68462119D43700694E92 /* ChangeTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChangeTableViewCell.m; sourceTree = "<group>"; };
+		1BDC0E23211C18B000AB7483 /* RootViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
+		1BDC0E24211C18B000AB7483 /* RootViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -298,10 +301,20 @@
 		1BAB682521194DD900694E92 /* 登录 注册 */ = {
 			isa = PBXGroup;
 			children = (
+				1BDC0E26211C18BA00AB7483 /* 根视图 */,
 				1B8A8293211AEDE600F63DC2 /* 登录 */,
 				1B8A8294211AEDF100F63DC2 /* 注册 */,
 			);
 			path = "登录 注册";
+			sourceTree = "<group>";
+		};
+		1BDC0E26211C18BA00AB7483 /* 根视图 */ = {
+			isa = PBXGroup;
+			children = (
+				1BDC0E23211C18B000AB7483 /* RootViewController.h */,
+				1BDC0E24211C18B000AB7483 /* RootViewController.m */,
+			);
+			path = "根视图";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -411,6 +424,7 @@
 				1BAB681E21194DB200694E92 /* DeleteViewController.m in Sources */,
 				1BAB67FE2119397900694E92 /* AppDelegate.m in Sources */,
 				1BAB6828211990D400694E92 /* StudentMessage.m in Sources */,
+				1BDC0E25211C18B000AB7483 /* RootViewController.m in Sources */,
 				1BAB682121194DBD00694E92 /* ChangeViewController.m in Sources */,
 				1BAB682B2119969B00694E92 /* StudentTableViewCell.m in Sources */,
 				1BAB68172119423400694E92 /* LoginViewController.m in Sources */,

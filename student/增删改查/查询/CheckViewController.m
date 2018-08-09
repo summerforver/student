@@ -32,7 +32,9 @@
     
     [self creatView];
     
-   
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(check1:) name:@"check1" object:nil];
+    
+   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(alert:) name:@"alert" object:nil];
 }
 
 - (void)creatView {
@@ -70,8 +72,7 @@
     
     [self.view addSubview:_tableView];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(check1:) name:@"check1" object:nil];
-    
+  
 }
 
 - (void)pressCheckButton:(UIButton *)button {
@@ -168,6 +169,11 @@
     return cell;
     
 }
+- (void)alert:(NSNotification *)text {
+    self.checkTextField.text = text.userInfo[@"alert"];
+    
+}
+
 
 - (void)viewDidDisappear:(BOOL)animated {
     _checkTextField.text = @"";

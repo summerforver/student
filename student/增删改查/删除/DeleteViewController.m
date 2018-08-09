@@ -32,6 +32,8 @@
     
     
     [self creatView];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(delete1:) name:@"delete1" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(alert:) name:@"alert" object:nil];
 }
 
 - (void)creatView {
@@ -77,7 +79,7 @@
     [_deleteReallyButton addTarget:self action:@selector(pressDeleteReallyButton:) forControlEvents:UIControlEventTouchDown];
     [self.view addSubview:_deleteReallyButton];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(delete1:) name:@"delete1" object:nil];
+    
     
 }
 
@@ -128,6 +130,14 @@
     
     //    _a.nameString = text.userInfo[@"nameText"];
 }
+
+
+- (void)alert:(NSNotification *)text {
+//        NSLog(@"%@",text.userInfo[@"alert"]);
+    self.deleteTextField.text = text.userInfo[@"alert"];
+   
+}
+
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;

@@ -87,11 +87,23 @@
 
 - (void)pressSubmitButton {
     
+    if ([_passTextField.text isEqualToString:@""] &&[_nameTextField.text isEqualToString:@""]) {
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"登录信息为空哦" message:@"想一想账号 或者去注册一个哦" preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction *defaultAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
+            NSLog(@"action = %@", action);
+        }];
+        
+        [alertController addAction:defaultAction];
+        alertController.view.tintColor = [UIColor blackColor];
+        [self presentViewController:alertController animated:YES completion:nil];
+    }
+    
     int i;
     int count = 0;
     for (i = 0; i < _personMutableArray.count; i ++) {
         if ([self.nameTextField.text isEqualToString:_personMutableArray[i]]) {
-            NSLog(@"%@", self.nameTextField.text);
+//            NSLog(@"%@", self.nameTextField.text);
             count ++;
             break;
         }
@@ -103,17 +115,16 @@
         UIAlertAction *firstAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
             //响应事件
             NSLog(@"action = %@", action);
-            self.nameTextField.text = @"";
             self.passTextField.text = @"";
-            
+            self.nameTextField.text = @"";
         }];
         
-        UIAlertAction *secondAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
-            NSLog(@"action = %@", action);
-        }];
-        
+//        UIAlertAction *secondAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
+//            NSLog(@"action = %@", action);
+//        }];
+//
         [alert addAction:firstAction];
-        [alert addAction:secondAction];
+//        [alert addAction:secondAction];
         
         alert.view.tintColor = [UIColor blackColor];
         [self presentViewController:alert animated:YES completion:nil];
@@ -161,12 +172,12 @@
                 
             }];
             
-            UIAlertAction *secondAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
-                NSLog(@"action = %@", action);
-            }];
+//            UIAlertAction *secondAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
+//                NSLog(@"action = %@", action);
+//            }];
             
             [alert addAction:firstAction];
-            [alert addAction:secondAction];
+//            [alert addAction:secondAction];
             
             alert.view.tintColor = [UIColor blackColor];
             [self presentViewController:alert animated:YES completion:nil];
@@ -183,6 +194,8 @@
     LoginViewController *loginViewController = [[LoginViewController alloc] init];
     
     loginViewController.delegate = self;
+    loginViewController.receiverMutableArray = self.personMutableArray;
+    
     
     [self presentViewController:loginViewController animated:YES completion:nil];
 }

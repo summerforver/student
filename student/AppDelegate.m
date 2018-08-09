@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "ViewController.h"
+#import "RootViewController.h"
 
 @interface AppDelegate ()
 
@@ -20,12 +21,11 @@
     // Override point for customization after application launch.
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     
-    
-    ViewController *a = [[ViewController alloc] init];
+    RootViewController *a = [[RootViewController alloc] init];
     self.window.rootViewController = a;
     
     //根视图跳转
-    [self performSelector:@selector(test) withObject:nil afterDelay:1.0];
+    [self performSelector:@selector(test) withObject:nil afterDelay:2.5];
     
     [self.window makeKeyAndVisible];
     

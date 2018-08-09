@@ -7,6 +7,7 @@
 //
 
 #import "AddViewController.h"
+#import "StudentMessage.h"
 
 @interface AddViewController ()<UITableViewDelegate, UITableViewDataSource>
 
@@ -17,20 +18,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    //    self.view.backgroundColor = [UIColor colorWithRed:0.69f green:0.80f blue:0.93f alpha:1.00f];
-    
-//    UINavigationItem *item = [[UINavigationItem alloc] initWithTitle:@"增加学生信息"];
-//
-//    UINavigationBar *bar = [[UINavigationBar alloc] initWithFrame:CGRectMake(0, 0, 375, 64)];
-//    bar.backgroundColor = [UIColor redColor];
-////    bar.tintColor = [UIColor redColor];
-//    [bar pushNavigationItem:item animated:YES];
-//
-//    UIBarButtonItem *leftButton = [[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:self action:@selector(pressLeftButton)];
-//    [item setLeftBarButtonItem:leftButton];
-//    [self.view addSubview:bar];
-//    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"11.JPG"]];
-    
     UIImageView *backgroundView = [[UIImageView alloc] initWithFrame:self.view.bounds];
     backgroundView.image = [UIImage imageNamed:@"11.JPG"];
     [self.view addSubview:backgroundView];
@@ -70,6 +57,7 @@
     _nameTextField = [[UITextField alloc] initWithFrame:CGRectMake(110, 120, 200, 40)];
     _nameTextField.layer.masksToBounds = YES;
     _nameTextField.layer.cornerRadius = 7;
+    _nameTextField.placeholder = @"请输入2～10位的姓名";
     _nameTextField.backgroundColor = [UIColor whiteColor];
     
     
@@ -157,13 +145,14 @@
     [self.view addSubview:classLabel];
     [self.view addSubview:_classTextField];
     [self.view addSubview:sexLabel];
-    [self.view addSubview:_sexTextField];
     
     [self.view addSubview:scoreLabel];
     [self.view addSubview:_scoreTextField];
     [self.view addSubview:addButton];
     
     [self.view addSubview:_tableView];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(alert:) name:@"alert" object:nil];
     
 }
 
@@ -221,6 +210,11 @@
 
 }
 
+//- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+//    [self.nameTextField becomeFirstResponder];
+//    return YES;
+//}
+
 - (void)rightButton:(UIButton *)button {
     //    button.selected = !button.selected;
     
@@ -240,6 +234,7 @@
     [self.view endEditing:YES];
 }
 
+
 - (void)pressAddButton:(UIButton *)button {
     
     button.selected = !button.selected;
@@ -247,33 +242,75 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:@"add" object:nil userInfo:dict];
     
     if (button.selected == YES) {
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"添加成功" message:@"请在学生信息显示处查看" preferredStyle:UIAlertControllerStyleAlert];
+        StudentMessage *student = [[StudentMessage alloc] initWithName:_nameTextField.text addNumber:_numTextField.text addClass:_classTextField.text addSex:_label.text addScore:_scoreTextField.text];
         
-        UIAlertAction *firstAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
-            //响应事件
-            NSLog(@"action = %@", action);
-        }];
-        
-        UIAlertAction *secondAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
-            NSLog(@"action = %@", action);
-        }];
-        
-        [alert addAction:firstAction];
-        [alert addAction:secondAction];
-        
-        alert.view.tintColor = [UIColor blackColor];
-        [self presentViewController:alert animated:YES completion:nil];
-        
+        if ([student chickName:_nameTextField.text andNumber:_numTextField.text addClass:_classTextField.text addSex:_label.text addScore:_scoreTextField.text]) {
+
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"添加成功" message:@"请在学生信息显示处查看" preferredStyle:UIAlertControllerStyleAlert];
+            
+            UIAlertAction *firstAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
+                //响应事件
+                self.scoreTextField.text = @"";
+                self.label.text = @"";
+                self.classTextField.text = @"";
+                self.numTextField.text = @"";
+                self.nameTextField.text = @"";
+            }];
+            
+            [alert addAction:firstAction];
+            
+            alert.view.tintColor = [UIColor blackColor];
+            [self presentViewController:alert animated:YES completion:nil];
+            
+            
+        } else {
+            UIAlertController *alert1 = [UIAlertController alertControllerWithTitle:@"输入的信息不合法哟" message:@"请根据提示重新输入" preferredStyle:UIAlertControllerStyleAlert];
+            
+            UIAlertAction *firstAction1 = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
+                //响应事件
+                self.scoreTextField.text = @"";
+                self.label.text = @"";
+                self.classTextField.text = @"";
+                self.numTextField.text = @"";
+                self.nameTextField.text = @"";
+            }];
+            
+            [alert1 addAction:firstAction1];
+            
+            alert1.view.tintColor = [UIColor blackColor];
+            [self presentViewController:alert1 animated:YES completion:nil];
+        }
+//        button.selected = NO;
     }
+        
+        
     
 }
 
+- (void)alert:(NSNotification *)text {
+//        NSLog(@"%@",text.userInfo[@"alert"]);
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:text.userInfo[@"alert"] message:@"请重新输入" preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *firstAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
+        self.scoreTextField.text = @"";
+        self.label.text = @"";
+        self.classTextField.text = @"";
+        self.numTextField.text = @"";
+        self.nameTextField.text = @"";
+    }];
+    [alert addAction:firstAction];
+    
+    alert.view.tintColor = [UIColor blackColor];
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
+
 - (void)viewDidDisappear:(BOOL)animated {
-    _nameTextField.text = @"";
-    _numTextField.text = @"";
-    _classTextField.text = @"";
-    _label.text = @"";
     _scoreTextField.text = @"";
+    _label.text = @"";
+    _classTextField.text = @"";
+    _numTextField.text = @"";
+    _nameTextField.text = @"";
 }
 - (void)pressLeftButton {
 //    [self.navigationController popViewControllerAnimated:YES];

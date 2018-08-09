@@ -83,31 +83,71 @@
 
 - (void)pressReallyLoginButton {
     
-    [_delegate shouldChangeValue:_nameTextField.text :_passTextField.text];
-    
-    if ([_passTextField.text isEqualToString:_reallyPassTextField.text]) {
-        [self dismissViewControllerAnimated:YES completion:nil];
-    } else {
-        UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"密码和确认密码不同" message:@"请重新输入 " preferredStyle:UIAlertControllerStyleAlert];
+    if ([_nameTextField.text isEqualToString:@""] && [_passTextField.text isEqualToString:@""] && [_reallyPassTextField.text isEqualToString:@""]) {
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"还没有注册" message:@"去注册一个吧" preferredStyle:UIAlertControllerStyleAlert];
         
         UIAlertAction *defaultAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
-            //响应事件
-            NSLog(@"action = %@", action);
-            self.passTextField.text = @"";
-            self.reallyPassTextField.text = @"";
+             NSLog(@"action = %@", action);
         }];
-        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
-            //响应事件
-            NSLog(@"action = %@", action);
-        }];
+       
+        [alertController addAction:defaultAction];
+        alertController.view.tintColor = [UIColor blackColor];
+        [self presentViewController:alertController animated:YES completion:nil];
         
-        [alert addAction:defaultAction];
-        [alert addAction:cancelAction];
-        alert.view.tintColor = [UIColor blackColor];
-        [self presentViewController:alert animated:YES completion:nil];
-        
+    } else {
+        int flag = 1;
+        for (int i = 0; i < _receiverMutableArray.count; i ++) {
+            //        NSLog(@"%@",_receiverMutableArray[i]);
+            if ([_nameTextField.text isEqualToString:_receiverMutableArray[i]]) {
+                flag = 0;
+                break;
+            }
+        }
+        if (flag == 0) {
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"用户名已存在" message:@"请重新输入 " preferredStyle:UIAlertControllerStyleAlert];
+            
+            UIAlertAction *defaultAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
+                //响应事件
+                NSLog(@"action = %@", action);
+                self.reallyPassTextField.text = @"";
+                self.passTextField.text = @"";
+                self.nameTextField.text = @"";
+                
+            }];
+            //            UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
+            //                //响应事件
+            //                NSLog(@"action = %@", action);
+            //            }];
+            //
+            [alert addAction:defaultAction];
+            //            [alert addAction:cancelAction];
+            alert.view.tintColor = [UIColor blackColor];
+            [self presentViewController:alert animated:YES completion:nil];
+        } else if ([_passTextField.text isEqualToString:_reallyPassTextField.text]) {
+            //        [_receiverMutableArray addObject:_nameTextField];
+            [_delegate shouldChangeValue:_nameTextField.text :_passTextField.text];
+            [self dismissViewControllerAnimated:YES completion:nil];
+        } else {
+            UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"密码和确认密码不同" message:@"请重新输入 " preferredStyle:UIAlertControllerStyleAlert];
+            
+            UIAlertAction *defaultAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
+                //响应事件
+                NSLog(@"action = %@", action);
+                self.reallyPassTextField.text = @"";
+                self.passTextField.text = @"";
+            }];
+            //        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
+            //            //响应事件
+            //            NSLog(@"action = %@", action);
+            //        }];
+            //
+            [alert addAction:defaultAction];
+            //        [alert addAction:cancelAction];
+            alert.view.tintColor = [UIColor blackColor];
+            [self presentViewController:alert animated:YES completion:nil];
+            
+        }
     }
-    
     
 }
 

@@ -17,7 +17,7 @@
 @property (nonatomic, strong)UITextField *nameTextField;
 @property (nonatomic, strong)UITextField *numTextField;
 @property (nonatomic, strong)UITextField *classTextField;
-@property (nonatomic, strong)UITextField *sexTextField;
+
 @property (nonatomic, strong)UITextField *scoreTextField;
 @property (nonatomic, strong)UILabel *label;
 @property (nonatomic, strong)UIButton *rightButton;
