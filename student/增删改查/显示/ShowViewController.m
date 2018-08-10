@@ -67,6 +67,45 @@
 //    [_studentMutableArray addObject:studentFirst];
 //    [_tableView reloadData];
     
+    if ([studentFirst chickName:studentFirst.nameString andNumber:studentFirst.numberString addClass:studentFirst.classString addSex:studentFirst.sexString addScore:studentFirst.scoreString]) {
+        
+                    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"添加成功" message:@"请在学生信息显示处查看" preferredStyle:UIAlertControllerStyleAlert];
+        
+                    UIAlertAction *firstAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
+                        //响应事件
+//                        self.scoreTextField.text = @"";
+//                        self.label.text = @"";
+//                        self.classTextField.text = @"";
+//                        self.numTextField.text = @"";
+//                        self.nameTextField.text = @"";
+                    }];
+        
+                    [alert addAction:firstAction];
+        
+                    alert.view.tintColor = [UIColor blackColor];
+                    [self presentViewController:alert animated:YES completion:nil];
+        [_studentMutableArray addObject:studentFirst];
+        [_tableView reloadData];
+        
+                } else {
+                    UIAlertController *alert1 = [UIAlertController alertControllerWithTitle:@"输入的信息不合法哟" message:@"请根据提示重新输入" preferredStyle:UIAlertControllerStyleAlert];
+        
+                    UIAlertAction *firstAction1 = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
+                        //响应事件
+//                        self.scoreTextField.text = @"";
+//                        self.label.text = @"";
+//                        self.classTextField.text = @"";
+//                        self.numTextField.text = @"";
+//                        self.nameTextField.text = @"";
+                    }];
+        
+                    [alert1 addAction:firstAction1];
+        
+                    alert1.view.tintColor = [UIColor blackColor];
+                    [self presentViewController:alert1 animated:YES completion:nil];
+                }
+
+
     int flag = 1;
     for (int i = 0; i <_studentMutableArray.count; i ++) {
         StudentMessage *textStudent = [[StudentMessage alloc] init];
@@ -81,24 +120,27 @@
     if (flag == 0) {
         NSDictionary *dict = @{@"alert":@"学号已经存在"};
         [[NSNotificationCenter defaultCenter] postNotificationName:@"alert" object:nil userInfo:dict];
-    } else {
-        [_studentMutableArray addObject:studentFirst];
-        [_tableView reloadData];
     }
-
-//    if (flag == 1) {
-//        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"添加成功" message:@"请在显示信息中查看" preferredStyle:UIAlertControllerStyleAlert];
-//
-//        UIAlertAction *firstAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
-//            //响应事件
-//            NSLog(@"action = %@", action);
-//
-//        }];
-//        [alert addAction:firstAction];
-//
-//        alert.view.tintColor = [UIColor blackColor];
-//        [self presentViewController:alert animated:YES completion:nil];
+//    } else {
+////        [_studentMutableArray addObject:studentFirst];
+////        [_tableView reloadData];
 //    }
+    
+    NSLog(@"%ld",_studentMutableArray.count);
+
+    if (flag == 1) {
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"添加成功" message:@"请在显示信息中查看" preferredStyle:UIAlertControllerStyleAlert];
+
+        UIAlertAction *firstAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
+            //响应事件
+            NSLog(@"action = %@", action);
+
+        }];
+        [alert addAction:firstAction];
+
+        alert.view.tintColor = [UIColor blackColor];
+        [self presentViewController:alert animated:YES completion:nil];
+    }
 }
 
 - (void)deleteReally:(NSNotification *)text {
@@ -176,9 +218,9 @@
         alert.view.tintColor = [UIColor blackColor];
         [self presentViewController:alert animated:YES completion:nil];
     }
-    NSDictionary *dict = @{@"alert":@""};
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"alert" object:nil userInfo:dict];
-    
+//    NSDictionary *dict = @{@"alert":@""};
+//    [[NSNotificationCenter defaultCenter] postNotificationName:@"alert" object:nil userInfo:dict];
+//
 }
 
 - (void)change:(NSNotification *)text {
@@ -220,38 +262,52 @@
 
 
 - (void)check:(NSNotification *)text {
-//    NSLog(@"%@",text.userInfo[@"checkText"]);
-//    NSLog(@"%@",_student.numberString);
-//    StudentMessage *b = _studentMutableArray
-    int count1 = 0;
-    for (int i = 0 ; i < _studentMutableArray.count; i ++) {
-        StudentMessage *b = [[StudentMessage alloc] init];
-        b = _studentMutableArray[i];
-        if ([b.numberString isEqualToString:text.userInfo[@"checkText"]]) {
-            count1 ++;
-            StudentMessage *aStudent = [[StudentMessage alloc] init];
-            aStudent = b;
-            NSDictionary *dict =@{@"studentMessage":aStudent};
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"check1" object:nil userInfo:dict];
-            break;
-        }
-    }
-    if (count1 == 0){
-        
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"没有找到该学号" message:@"请重新输入" preferredStyle:UIAlertControllerStyleAlert];
-        
-        UIAlertAction *firstAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
-            //响应事件
-            NSLog(@"action = %@", action);
-            
-        }];
-        [alert addAction:firstAction];
-        
-        alert.view.tintColor = [UIColor blackColor];
-        [self presentViewController:alert animated:YES completion:nil];
-    }
-    NSDictionary *dict = @{@"alert":@""};
+    NSLog(@"%@",text.userInfo[@"checkText"]);
+    NSDictionary *dict = @{@"alert":_studentMutableArray};
     [[NSNotificationCenter defaultCenter] postNotificationName:@"alert" object:nil userInfo:dict];
+    
+    
+//    NSLog(@"%@123",text.userInfo[@"checkText"]);
+////    NSLog(@"%@",_student.numberString);
+////    StudentMessage *b = _studentMutableArray;
+//    int flag = 1;
+//    int i;
+//    for (i = 0 ; i < _studentMutableArray.count; i ++) {
+//        StudentMessage *b = [[StudentMessage alloc] init];
+//        b = _studentMutableArray[i];
+//        if ([b.numberString isEqualToString:text.userInfo[@"checkText"]]) {
+//            flag = 0;
+////            StudentMessage *aStudent = [[StudentMessage alloc] init];
+////            aStudent = b;
+////            NSDictionary *dict =@{@"studentMessage":aStudent};
+////            [[NSNotificationCenter defaultCenter] postNotificationName:@"check1" object:nil userInfo:dict];
+//            break;
+//        }
+//    }
+//    if (flag == 1) {
+//
+////        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"没有找到该学号" message:@"请重新输入" preferredStyle:UIAlertControllerStyleAlert];
+////
+////        UIAlertAction *firstAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
+////            //响应事件
+////            NSLog(@"action = %@", action);
+////
+////        }];
+////        [alert addAction:firstAction];
+////
+////        alert.view.tintColor = [UIColor blackColor];
+////        [self presentViewController:alert animated:YES completion:nil];
+//
+//            NSDictionary *dict = @{@"alert":@""};
+//            [[NSNotificationCenter defaultCenter] postNotificationName:@"alert" object:nil userInfo:dict];
+//    } else {
+//        StudentMessage *aStudent = [[StudentMessage alloc] init];
+//        aStudent = _studentMutableArray[i];
+//        NSDictionary *dict =@{@"studentMessage":aStudent};
+//
+//        [[NSNotificationCenter defaultCenter] postNotificationName:@"check1" object:nil userInfo:dict];
+//    }
+
 }
 
 - (void)dealloc {
@@ -262,7 +318,9 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"delete" object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"deleteReally" object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"check" object:nil];
-
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"alert" object:nil];
+        
+   
 }
 
 

@@ -353,6 +353,7 @@
             alert.view.tintColor = [UIColor blackColor];
             [self presentViewController:alert animated:YES completion:nil];
             
+             button.selected = NO;
         }
     } else {
         UIAlertController *alert1 = [UIAlertController alertControllerWithTitle:@"输入的信息不合法哟" message:@"请根据提示重新输入" preferredStyle:UIAlertControllerStyleAlert];
@@ -371,6 +372,7 @@
         alert1.view.tintColor = [UIColor blackColor];
         [self presentViewController:alert1 animated:YES completion:nil];
     }
+   
     
 }
 

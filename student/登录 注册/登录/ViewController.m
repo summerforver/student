@@ -37,6 +37,7 @@
     nameLabel.font = [UIFont systemFontOfSize:16.0];
     
      _nameTextField = [[UITextField alloc] initWithFrame:CGRectMake(120, 80, 200, 40)];
+    _nameTextField.placeholder = @"请输入5～10位用户名";
     [self setNameTextField:_nameTextField];
    
     UILabel *passLabel = [[UILabel alloc] initWithFrame:CGRectMake(40, 160, 70, 40)];
@@ -44,6 +45,7 @@
     passLabel.font = [UIFont systemFontOfSize:16.0];
     _passTextField = [[UITextField alloc] initWithFrame:CGRectMake(120, 160, 200, 40)];
     _passTextField.secureTextEntry = YES;
+    _passTextField.placeholder = @"请输入6～18位密码";
     [self setNameTextField:_passTextField];
     
     

@@ -33,7 +33,7 @@
     
     [self creatView];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(delete1:) name:@"delete1" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(alert:) name:@"alert" object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(alert:) name:@"alert" object:nil];
 }
 
 - (void)creatView {
@@ -60,7 +60,7 @@
     [deleteButton addTarget:self action:@selector(pressDeleteButton:) forControlEvents:UIControlEventTouchDown];
     [self.view addSubview:deleteButton];
     
-    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(5, 180, 365, 0) style:UITableViewStyleGrouped];
+    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(5, 180, 365, 100) style:UITableViewStyleGrouped];
     [self.tableView registerClass:[StudentTableViewCell class] forCellReuseIdentifier:@"cell"];
     _tableView.delegate = self;
     _tableView.dataSource = self;
@@ -109,7 +109,8 @@
 
         alert.view.tintColor = [UIColor blackColor];
         [self presentViewController:alert animated:YES completion:nil];
-
+        
+        button.selected = NO;
     }
     
     
@@ -121,26 +122,44 @@
     _a = text.userInfo[@"studentDeleteMessage"];
     
     if ([_a.numberString isEqualToString:self.deleteTextField.text]) {
-        self.tableView.frame = CGRectMake(5, 180, 365, 100);
+
+        _flagAll = 1;
+        [_tableView reloadData];
         self.deleteReallyButton.frame = CGRectMake(140, 300, 100, 40);
     } else {
-        self.tableView.frame = CGRectMake(5, 180, 365, 0);
+        _flagAll = 0;
+        [_tableView reloadData];
         self.deleteReallyButton.frame = CGRectMake(140, 300, 100, 0);
     }
+
+//    NSLog(@"%@",_a.numberString);
+//    if ([_a.numberString isEqualToString:self.deleteTextField.text]) {
+//        self.tableView.frame = CGRectMake(5, 180, 365, 100);
+////        [_tableView reloadData];
+//        self.deleteReallyButton.frame = CGRectMake(140, 300, 100, 40);
+//    } else {
+//        self.tableView.frame = CGRectMake(5, 180, 365, 0);
+//        self.deleteReallyButton.frame = CGRectMake(140, 300, 100, 0);
+//    }
     
     //    _a.nameString = text.userInfo[@"nameText"];
 }
 
 
-- (void)alert:(NSNotification *)text {
-//        NSLog(@"%@",text.userInfo[@"alert"]);
-    self.deleteTextField.text = text.userInfo[@"alert"];
-   
-}
+//- (void)alert:(NSNotification *)text {
+////        NSLog(@"%@",text.userInfo[@"alert"]);
+//    self.deleteTextField.text = text.userInfo[@"alert"];
+//
+//}
 
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+    if (_flagAll == 1) {
+        return 1;
+    } else {
+        return 0;
+    }
+//    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -244,7 +263,11 @@
 
 - (void)viewDidDisappear:(BOOL)animated {
     _deleteTextField.text = @"";
-    self.tableView.frame = CGRectMake(5, 180, 365, 0);
+//    self.tableView.frame = CGRectMake(5, 180, 365, 0);
+//    self.deleteReallyButton.frame = CGRectMake(140, 300, 100, 0);
+    
+    _flagAll = 0;
+    [_tableView reloadData];
     self.deleteReallyButton.frame = CGRectMake(140, 300, 100, 0);
 }
 

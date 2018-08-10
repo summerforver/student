@@ -15,4 +15,5 @@
 @property (nonatomic, strong)UITableView *tableView;
 @property (nonatomic, strong)UIButton *deleteReallyButton;
 @property StudentMessage *a;
+@property int flagAll;
 @end

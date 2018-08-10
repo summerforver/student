@@ -30,6 +30,7 @@
     nameLabel.font = [UIFont systemFontOfSize:16.0];
     
     _nameTextField = [[UITextField alloc] initWithFrame:CGRectMake(120, 100, 200, 40)];
+    _nameTextField.placeholder = @"请输入5～10位用户名";
     [self setNameTextField:_nameTextField];
     
     UILabel *passLabel = [[UILabel alloc] initWithFrame:CGRectMake(40, 180, 70, 40)];
@@ -38,6 +39,7 @@
     
     _passTextField = [[UITextField alloc] initWithFrame:CGRectMake(120, 180, 200, 40)];
     _passTextField.secureTextEntry = YES;
+    _passTextField.placeholder = @"请输入6～18位密码";
     [self setNameTextField:_passTextField];
     
     UILabel *reallPassLabel = [[UILabel alloc] initWithFrame:CGRectMake(40, 260, 70, 40)];
@@ -46,6 +48,7 @@
     
     _reallyPassTextField = [[UITextField alloc] initWithFrame:CGRectMake(120, 260, 200, 40)];
     _reallyPassTextField.secureTextEntry = YES;
+    _reallyPassTextField.placeholder = @"请输入6～18位密码";
     [self setNameTextField:_reallyPassTextField];
     
     
@@ -95,6 +98,9 @@
         [self presentViewController:alertController animated:YES completion:nil];
         
     } else {
+        
+        
+        
         int flag = 1;
         for (int i = 0; i < _receiverMutableArray.count; i ++) {
             //        NSLog(@"%@",_receiverMutableArray[i]);
@@ -123,6 +129,21 @@
             //            [alert addAction:cancelAction];
             alert.view.tintColor = [UIColor blackColor];
             [self presentViewController:alert animated:YES completion:nil];
+        } else if (_nameTextField.text.length > 10 || _nameTextField.text.length < 5 || _passTextField.text.length > 18 || _passTextField.text.length < 6 || _reallyPassTextField.text.length > 18 || _reallyPassTextField.text.length < 6) {
+            UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"用户名或者密码不合法呦" message:@"请按照提示重新输入" preferredStyle:UIAlertControllerStyleAlert];
+            
+            UIAlertAction *defaultAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
+                //响应事件
+                NSLog(@"action = %@", action);
+                self.nameTextField.text = @"";
+                self.reallyPassTextField.text = @"";
+                self.passTextField.text = @"";
+            }];
+          
+            [alert addAction:defaultAction];
+            alert.view.tintColor = [UIColor blackColor];
+            [self presentViewController:alert animated:YES completion:nil];
+            
         } else if ([_passTextField.text isEqualToString:_reallyPassTextField.text]) {
             //        [_receiverMutableArray addObject:_nameTextField];
             [_delegate shouldChangeValue:_nameTextField.text :_passTextField.text];

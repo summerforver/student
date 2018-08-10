@@ -236,60 +236,67 @@
 
 
 - (void)pressAddButton:(UIButton *)button {
-    
     button.selected = !button.selected;
-    NSDictionary *dict = @{@"nameText":self.nameTextField.text, @"numText":self.numTextField.text, @"classText":self.classTextField.text, @"sexText":self.label.text, @"scoreText":self.scoreTextField.text};
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"add" object:nil userInfo:dict];
-    
     if (button.selected == YES) {
-        StudentMessage *student = [[StudentMessage alloc] initWithName:_nameTextField.text addNumber:_numTextField.text addClass:_classTextField.text addSex:_label.text addScore:_scoreTextField.text];
         
-        if ([student chickName:_nameTextField.text andNumber:_numTextField.text addClass:_classTextField.text addSex:_label.text addScore:_scoreTextField.text]) {
-
-            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"添加成功" message:@"请在学生信息显示处查看" preferredStyle:UIAlertControllerStyleAlert];
-            
-            UIAlertAction *firstAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
-                //响应事件
-                self.scoreTextField.text = @"";
-                self.label.text = @"";
-                self.classTextField.text = @"";
-                self.numTextField.text = @"";
-                self.nameTextField.text = @"";
-            }];
-            
-            [alert addAction:firstAction];
-            
-            alert.view.tintColor = [UIColor blackColor];
-            [self presentViewController:alert animated:YES completion:nil];
-            
-            
-        } else {
-            UIAlertController *alert1 = [UIAlertController alertControllerWithTitle:@"输入的信息不合法哟" message:@"请根据提示重新输入" preferredStyle:UIAlertControllerStyleAlert];
-            
-            UIAlertAction *firstAction1 = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
-                //响应事件
-                self.scoreTextField.text = @"";
-                self.label.text = @"";
-                self.classTextField.text = @"";
-                self.numTextField.text = @"";
-                self.nameTextField.text = @"";
-            }];
-            
-            [alert1 addAction:firstAction1];
-            
-            alert1.view.tintColor = [UIColor blackColor];
-            [self presentViewController:alert1 animated:YES completion:nil];
-        }
-//        button.selected = NO;
+        
+        NSDictionary *dict = @{@"nameText":self.nameTextField.text, @"numText":self.numTextField.text, @"classText":self.classTextField.text, @"sexText":self.label.text, @"scoreText":self.scoreTextField.text};
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"add" object:nil userInfo:dict];
+        button.selected = NO;
     }
-        
-        
+    
+    
+    
+    
+//    if (button.selected == YES) {
+//        StudentMessage *student = [[StudentMessage alloc] initWithName:_nameTextField.text addNumber:_numTextField.text addClass:_classTextField.text addSex:_label.text addScore:_scoreTextField.text];
+//
+//        if ([student chickName:_nameTextField.text andNumber:_numTextField.text addClass:_classTextField.text addSex:_label.text addScore:_scoreTextField.text]) {
+//
+//            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"添加成功" message:@"请在学生信息显示处查看" preferredStyle:UIAlertControllerStyleAlert];
+//
+//            UIAlertAction *firstAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
+//                //响应事件
+//                self.scoreTextField.text = @"";
+//                self.label.text = @"";
+//                self.classTextField.text = @"";
+//                self.numTextField.text = @"";
+//                self.nameTextField.text = @"";
+//            }];
+//
+//            [alert addAction:firstAction];
+//
+//            alert.view.tintColor = [UIColor blackColor];
+//            [self presentViewController:alert animated:YES completion:nil];
+//
+//
+//        } else {
+//            UIAlertController *alert1 = [UIAlertController alertControllerWithTitle:@"输入的信息不合法哟" message:@"请根据提示重新输入" preferredStyle:UIAlertControllerStyleAlert];
+//
+//            UIAlertAction *firstAction1 = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
+//                //响应事件
+//                self.scoreTextField.text = @"";
+//                self.label.text = @"";
+//                self.classTextField.text = @"";
+//                self.numTextField.text = @"";
+//                self.nameTextField.text = @"";
+//            }];
+//
+//            [alert1 addAction:firstAction1];
+//
+//            alert1.view.tintColor = [UIColor blackColor];
+//            [self presentViewController:alert1 animated:YES completion:nil];
+//        }
+//        button.selected = NO;
+//    }
+//
+    
     
 }
 
 - (void)alert:(NSNotification *)text {
 //        NSLog(@"%@",text.userInfo[@"alert"]);
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:text.userInfo[@"alert"] message:@"请重新输入" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"学号已经存在" message:@"请重新输入" preferredStyle:UIAlertControllerStyleAlert];
     
     UIAlertAction *firstAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
         self.scoreTextField.text = @"";
@@ -301,7 +308,15 @@
     [alert addAction:firstAction];
     
     alert.view.tintColor = [UIColor blackColor];
-    [self presentViewController:alert animated:YES completion:nil];
+//    [self presentViewController:alert animated:YES completion:nil];
+}
+
+- (void)dealloc {
+    
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"alert" object:nil];
+    
+    
 }
 
 

@@ -32,7 +32,7 @@
     
     [self creatView];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(check1:) name:@"check1" object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(check1:) name:@"check1" object:nil];
     
    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(alert:) name:@"alert" object:nil];
 }
@@ -61,23 +61,45 @@
     [checkButton addTarget:self action:@selector(pressCheckButton:) forControlEvents:UIControlEventTouchDown];
     [self.view addSubview:checkButton];
     
-    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(5, 180, 365, 0) style:UITableViewStyleGrouped];
+//    [self tableView];
+    
+    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(5, 180, 365, 100) style:UITableViewStyleGrouped];
     [self.tableView registerClass:[StudentTableViewCell class] forCellReuseIdentifier:@"cell"];
     _tableView.delegate = self;
     _tableView.dataSource = self;
     _tableView.showsVerticalScrollIndicator = NO;
     _tableView.backgroundColor = [UIColor clearColor];
     _tableView.scrollEnabled = NO;
-//    [UIColor colorWithRed:0.93f green:0.93f blue:0.94f alpha:1.00f];
-    
+    //[_tableView reloadData];
+    //    [UIColor colorWithRed:0.93f green:0.93f blue:0.94f alpha:1.00f];
     [self.view addSubview:_tableView];
+
     
-  
 }
+
+//- (UITableView *)tableView {
+//    if (_tableView == nil) {
+//        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(5, 180, 365, 100) style:UITableViewStyleGrouped];
+//        [self.tableView registerClass:[StudentTableViewCell class] forCellReuseIdentifier:@"cell"];
+//        _tableView.delegate = self;
+//        _tableView.dataSource = self;
+//        _tableView.showsVerticalScrollIndicator = NO;
+//        _tableView.backgroundColor = [UIColor clearColor];
+//        _tableView.scrollEnabled = NO;
+//        [_tableView reloadData];
+//        //    [UIColor colorWithRed:0.93f green:0.93f blue:0.94f alpha:1.00f];
+//        [self.view addSubview:_tableView];
+//    }
+//
+//    return _tableView;
+//}
 
 - (void)pressCheckButton:(UIButton *)button {
     button.selected = !button.selected;
     if (button.selected == YES) {
+        
+        NSLog(@"%@111",self.checkTextField.text);
+        
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"确认查询" message:@" " preferredStyle:UIAlertControllerStyleAlert];
         
         UIAlertAction *firstAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
@@ -103,26 +125,119 @@
         alert.view.tintColor = [UIColor blackColor];
         [self presentViewController:alert animated:YES completion:nil];
         
+        button.selected = NO;
     }
     
 }
 
-- (void)check1:(NSNotification *)text {
-//    NSLog(@"%@",text.userInfo[@"nameText"]);
-    _a = [[StudentMessage alloc] init];
-    _a = text.userInfo[@"studentMessage"];
+- (void)dealloc {
     
-    if ([_a.numberString isEqualToString:self.checkTextField.text]) {
-        self.tableView.frame = CGRectMake(5, 180, 365, 100);
-    } else {
-        self.tableView.frame = CGRectMake(5, 180, 365, 0);
-    }
     
-//    _a.nameString = text.userInfo[@"nameText"];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"check" object:nil];
+    
+    
+}
+
+//- (void)check1:(NSNotification *)text {
+////    NSLog(@"%@",text.userInfo[@"nameText"]);
+//    _a = [[StudentMessage alloc] init];
+//    _a = text.userInfo[@"studentMessage"];
+//
+//     NSLog(@"%@222",_a.numberString);
+//    NSLog(@"%@",_a.nameString);
+//
+//    if ([_a.numberString isEqualToString:self.checkTextField.text]) {
+//        NSLog(@"hahhahahahahaha");
+//        _flagRight = 1;
+//        [_tableView reloadData];
+//    } else {
+//        _flagRight = 0;
+//        [_tableView reloadData];
+//    }
+////    [_tableView reloadData];
+//
+////    _flagRight = 1;
+////    [_tableView reloadData];
+//
+////    self.tableView.frame = CGRectMake(5, 180, 365, 100);
+////    if ([_a.numberString isEqualToString:self.checkTextField.text]) {
+////        self.tableView.frame = CGRectMake(5, 180, 365, 100);
+////    } else {
+////        self.tableView.frame = CGRectMake(5, 180, 365, 0);
+////    }
+////
+////    _a.nameString = text.userInfo[@"nameText"];
+//}
+
+- (void)alert:(NSNotification *)text {
+
+//    _flagRight = 0;
+//    [_tableView reloadData];
+//    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"没有找到该学号" message:@"请重新输入" preferredStyle:UIAlertControllerStyleAlert];
+//
+//    UIAlertAction *firstAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
+//        //响应事件
+//        NSLog(@"action = %@", action);
+//        self.checkTextField.text = @"";
+//
+//    }];
+//    [alert addAction:firstAction];
+//
+//    alert.view.tintColor = [UIColor blackColor];
+//    [self presentViewController:alert animated:YES completion:nil];
+
+        _checkMutableArray = text.userInfo[@"alert"];
+//        NSLog(@"%ld",_checkMutableArray.count);
+//        NSLog(@"%@",_checkTextField.text);
+        StudentMessage *goodStudent = [[StudentMessage alloc] init];
+        int flag = 1;
+        int i;
+        for (i = 0; i < _checkMutableArray.count; i ++) {
+            NSLog(@"12");
+            goodStudent = _checkMutableArray[i];
+            if ([_checkTextField.text isEqualToString:goodStudent.numberString]) {
+                flag = 0;
+                break;
+            }
+        }
+        if (flag == 0) {
+            NSLog(@"aaaaaaaaaaaa");
+            StudentMessage *aStudent = [[StudentMessage alloc] init];
+            aStudent = _checkMutableArray[i];
+            _a = aStudent;
+            _flagRight = 1;
+            NSLog(@"_tableView = %@",_tableView);
+            [_tableView reloadData];
+            
+//            self.tableView.frame = CGRectMake(5, 180, 365, 100);
+    
+        } else {
+            NSLog(@"13");
+            _flagRight = 0;
+            [_tableView reloadData];
+    //        self.tableView.frame = CGRectMake(5, 180, 365, 0);
+//            self.tableView.frame = CGRectMake(5, 180, 365, 0);
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"学号不存在" message:@"请重新输入" preferredStyle:UIAlertControllerStyleAlert];
+    
+            UIAlertAction *firstAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
+                //响应事件
+                NSLog(@"action = %@", action);
+    
+            }];
+    
+            [alert addAction:firstAction];
+            alert.view.tintColor = [UIColor blackColor];
+            [self presentViewController:alert animated:YES completion:nil];
+        }
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+//    return 1;
+    if (_flagRight == 1) {
+        return 1;
+    } else {
+        return 0;
+    }
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -150,34 +265,33 @@
 }
 
 
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     //    NSLog(@"%ld",indexPath.section);
     
     StudentTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
     
+        NSLog(@"%@-----------------------",_a.numberString);
+        cell.nameMessageLabel.text = _a.nameString;
+        cell.numberMessageLabel.text = _a.numberString;
+        cell.classMessageLabel.text = _a.classString;
+        cell.sexMessageLabel.text = _a.sexString;
+        cell.scoreMessageLabel.text = _a.scoreString;
+        
+        cell.backgroundColor = [UIColor clearColor];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        return cell;
     
-//    StudentMessage *student = _studentMutableArray[indexPath.section];
-    cell.nameMessageLabel.text = _a.nameString;
-    cell.numberMessageLabel.text = _a.numberString;
-    cell.classMessageLabel.text = _a.classString;
-    cell.sexMessageLabel.text = _a.sexString;
-    cell.scoreMessageLabel.text = _a.scoreString;
-    
-    cell.backgroundColor = [UIColor clearColor];
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    return cell;
-    
-}
-- (void)alert:(NSNotification *)text {
-    self.checkTextField.text = text.userInfo[@"alert"];
     
 }
+
 
 
 - (void)viewDidDisappear:(BOOL)animated {
     _checkTextField.text = @"";
-    self.tableView.frame = CGRectMake(5, 180, 365, 0);
+//    self.tableView.frame = CGRectMake(5, 180, 365, 0);
+    _flagRight = 0;
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {

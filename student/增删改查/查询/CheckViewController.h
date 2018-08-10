@@ -14,5 +14,8 @@
 @property (nonatomic, strong)UITextField *checkTextField;
 @property (nonatomic, strong)UITableView *tableView;
 @property StudentMessage *a;
+@property int flagRight;
+
+@property (nonatomic, strong)NSMutableArray *checkMutableArray;
 
 @end
