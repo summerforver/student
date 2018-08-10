@@ -65,7 +65,7 @@
     _nameLabel.frame = CGRectMake(20, 160, 60, 40);
     _nameTextField.frame = CGRectMake(100, 160, 200, 40);
     _numberLabel.frame = CGRectMake(20, 210, 60, 40);
-    _numberTextField.frame = CGRectMake(100, 210, 200, 40);
+    _numberTextLabel.frame = CGRectMake(100, 210, 200, 40);
     _classLabel.frame = CGRectMake(20, 260, 60, 40);
     _classTextField.frame = CGRectMake(100, 260, 200, 40);
     _sexLabel.frame = CGRectMake(20, 310, 60, 40);
@@ -81,7 +81,7 @@
     _nameLabel.frame = CGRectMake(20, 160, 60, 0);
     _nameTextField.frame = CGRectMake(100, 160, 200, 0);
     _numberLabel.frame = CGRectMake(20, 210, 60, 0);
-    _numberTextField.frame = CGRectMake(100, 210, 200, 0);
+    _numberTextLabel.frame = CGRectMake(100, 210, 200, 0);
     _classLabel.frame = CGRectMake(20, 260, 60, 0);
     _classTextField.frame = CGRectMake(100, 260, 200, 0);
     _sexLabel.frame = CGRectMake(20, 310, 60, 0);
@@ -114,11 +114,16 @@
     _numberLabel.font = [UIFont systemFontOfSize:18.0];
     _numberLabel.textAlignment = NSTextAlignmentCenter;
     
-    _numberTextField = [[UITextField alloc] initWithFrame:CGRectMake(100, 210, 200, 0)];
-    _numberTextField.layer.masksToBounds = YES;
-    _numberTextField.layer.cornerRadius = 7;
-    _numberTextField.backgroundColor = [UIColor whiteColor];
-    _numberTextField.placeholder = @"请输入八位学号";
+//    _numberTextField = [[UITextField alloc] initWithFrame:CGRectMake(100, 210, 200, 0)];
+//    _numberTextField.layer.masksToBounds = YES;
+//    _numberTextField.layer.cornerRadius = 7;
+//    _numberTextField.backgroundColor = [UIColor whiteColor];
+//    _numberTextField.placeholder = @"请输入八位学号";
+    _numberTextLabel = [[UILabel alloc] initWithFrame:CGRectMake(100, 210, 200, 0)];
+    _numberTextLabel.layer.masksToBounds = YES;
+    _numberTextLabel.layer.cornerRadius = 7;
+    _numberTextLabel.backgroundColor = [UIColor whiteColor];
+//    _numberTextLabel.placeholder = @"请输入八位学号";
     
     _classLabel = [[UILabel alloc] init];
     _classLabel.frame = CGRectMake(20, 260, 60, 0);
@@ -187,7 +192,7 @@
     [self.view addSubview:_nameLabel];
     [self.view addSubview:_nameTextField];
     [self.view addSubview:_numberLabel];
-    [self.view addSubview:_numberTextField];
+    [self.view addSubview:_numberTextLabel];
     [self.view addSubview:_classLabel];
     [self.view addSubview:_classTextField];
     [self.view addSubview:_sexLabel];
@@ -311,14 +316,14 @@
     //
     //    [[NSNotificationCenter defaultCenter] postNotificationName:@"delete" object:nil userInfo:dict];
     if (button.selected == YES) {
-        StudentMessage *student = [[StudentMessage alloc] initWithName:_nameTextField.text addNumber:_numberTextField.text addClass:_classTextField.text addSex:_label.text addScore:_scoreTextField.text];
-        if ([student chickName:_nameTextField.text andNumber:_numberTextField.text addClass:_classTextField.text addSex:_label.text addScore:_scoreTextField.text]) {
+        StudentMessage *student = [[StudentMessage alloc] initWithName:_nameTextField.text addNumber:_numberTextLabel.text addClass:_classTextField.text addSex:_label.text addScore:_scoreTextField.text];
+        if ([student chickName:_nameTextField.text andNumber:_numberTextLabel.text addClass:_classTextField.text addSex:_label.text addScore:_scoreTextField.text]) {
             UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"确认修改" message:@"请确定是否修改" preferredStyle:UIAlertControllerStyleAlert];
             
             UIAlertAction *firstAction = [UIAlertAction actionWithTitle:@"是" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
                 //响应事件
                 //            NSLog(@"action = %@", action);
-                NSDictionary *dict = @{@"nameChText":self.nameTextField.text, @"numberChText":self.numberTextField.text, @"classChText":self.classTextField.text, @"sexChText":self.label.text, @"scoreChText":self.scoreTextField.text};
+                NSDictionary *dict = @{@"nameChText":self.nameTextField.text, @"numberChText":self.numberTextLabel.text, @"classChText":self.classTextField.text, @"sexChText":self.label.text, @"scoreChText":self.scoreTextField.text};
                 
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"changeReally" object:nil userInfo:dict];
                 
@@ -389,7 +394,7 @@
     
     if ([_a.numberString isEqualToString:self.changeTextField.text]) {
         self.nameTextField.text = _a.nameString;
-        self.numberTextField.text = _a.numberString;
+        self.numberTextLabel.text = _a.numberString;
         self.classTextField.text = _a.classString;
         self.label.text = _a.sexString;
         self.scoreTextField.text = _a.scoreString;
